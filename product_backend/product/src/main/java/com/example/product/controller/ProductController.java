@@ -21,14 +21,12 @@ public class ProductController {
 
     @GetMapping("/product")
     public ResponseEntity<Page<Product>> getProduct(@RequestParam(defaultValue = "0", required = false) int page,
+                                                    @RequestParam(defaultValue = "0", required = false) int productTypeId,
                                                     @RequestParam(defaultValue = "", required = false) String searchName) {
-        Pageable pageable = PageRequest.of(page, 3, Sort.by("name").ascending());
-        Page<Product> productPage = iProductService.getListProduct(pageable, searchName);
-        System.out.println(productPage.isEmpty());
-//        if (productPage.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//        }
-        return new ResponseEntity<>(productPage, HttpStatus.OK);
+        Pageable pageable = PageRequest.of(page, 4, Sort.by("name").ascending());
+
+        Page<Product> productPage = iProductService.getListProduct(pageable, searchName,productTypeId);
+             return new ResponseEntity<>(productPage, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -40,12 +38,20 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @PutMapping("/edit")
-    public void editProduct(@RequestBody Product product){
+    public ResponseEntity<Product> editProduct(@RequestBody Product product){
          iProductService.edit(product);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Product> deleteProduct(@PathVariable int id) {
        iProductService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @PostMapping("/create")
+    public ResponseEntity<Product> addProduct(@RequestBody Product product){
+        iProductService.add(product);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 }

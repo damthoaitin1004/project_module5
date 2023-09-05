@@ -10,9 +10,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    @Query(value = "select * from product.product where flag = true and name like :name ", nativeQuery = true)
-    Page<Product> findAllProduct(Pageable pageable, @Param(value = "name") String name);
-//    @Query(value = "insert into  product.product (id, code, flag, name, start_day, product_type_id, quantity) VALUES ()
+    @Query(value = "select * from product.product where flag = true and name like :name  and product_type_id= :product_type_id", nativeQuery = true)
+    Page<Product> findAllProduct(Pageable pageable, @Param(value = "name") String name,@Param(value = "product_type_id")Integer productTypeId);
+    @Query(value = "select * from product.product where flag = true and name like :name  ", nativeQuery = true)
+    Page<Product> findAllProductSearch(Pageable pageable, @Param(value = "name") String name);
     @Query(value = " select * from product.product where flag = true and id = :id ",nativeQuery = true)
     Product getById(@Param(value = "id") Integer id);
     @Modifying
@@ -25,5 +26,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     void deleteProduct(@Param(value="id") Integer id);
     @Modifying
     @Transactional
-    @Query(value = "insert into product.product value ()")
+    @Query(value = "insert into product.product(code,name,start_day,quantity,product_type_id) value (:code,:name,:start_day,:quantity,:product_type_id)",nativeQuery = true)
+    void add(@Param(value = "code")String code,@Param(value = "name")String name,@Param(value = "start_day")String startDay,@Param("quantity") Long quantity,@Param(value = "product_type_id") Integer productTypeId);
 }

@@ -12,15 +12,19 @@ public class ProductService implements IProductService {
     @Autowired
     private ProductRepository productRepository;
     @Override
-    public Page<Product> getListProduct(Pageable pageable, String search) {
-
-        return productRepository.findAllProduct(pageable,"%"+search+"%");
+    public Page<Product> getListProduct(Pageable pageable, String search,Integer productTypeId) {
+        if (productTypeId == 0){
+            return productRepository.findAllProductSearch(pageable,"%"+search+"%");
+        }
+        return productRepository.findAllProduct(pageable,"%"+search+"%",productTypeId);
     }
 
     @Override
     public void add(Product product) {
-
+         productRepository.add(product.getCode(),product.getName(),product.getStartDay(),product.getQuantity(),product.getProductType().getId());
     }
+
+
 
     @Override
     public void delete(Integer id) {
