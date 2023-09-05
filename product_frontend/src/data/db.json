@@ -1,0 +1,88 @@
+{
+  "product": [
+    {
+      "id": 1,
+      "code": "SP-01",
+      "name": "áo ba lỗ1",
+      "startDay": "2023-09-07",
+      "quantity": 1003,
+      "type": {
+        "id": 2,
+        "name": "Quần"
+      },
+      "tye": {
+        "id": 3,
+        "name": "Mũ"
+      }
+    },
+    {
+      "id": 2,
+      "code": "SP-02",
+      "name": "Quần kaki",
+      "startDay": "2022-12-10",
+      "quantity": 50,
+      "type": {
+        "id": 2,
+        "name": "Quần"
+      }
+    },
+    {
+      "id": 3,
+      "code": "SP-04",
+      "name": "Mũ hip hop",
+      "startDay": "2021-02-05",
+      "quantity": 60,
+      "type": {
+        "id": 3,
+        "name": "Mũ"
+      }
+    },
+    {
+      "id": 4,
+      "code": "SP-04",
+      "name": "áo jean",
+      "startDay": "2023-08-31",
+      "quantity": 50,
+      "type": {
+        "id": 1,
+        "name": "Áo"
+      }
+    },
+    {
+      "id": 5,
+      "code": "SP-05",
+      "name": "Mũ tai bèo",
+      "startDay": "2023-09-14",
+      "quantity": 100,
+      "type": {
+        "id": 3,
+        "name": "Mũ"
+      }
+    },
+    {
+      "id": 6,
+      "code": "SP-06",
+      "name": "Quần  jean",
+      "startDay": "2023-09-14",
+      "quantity": 100,
+      "type": {
+        "id": 2,
+        "name": "Quần"
+      }
+    }
+  ],
+  "type": [
+    {
+      "id": 1,
+      "name": "Áo"
+    },
+    {
+      "id": 2,
+      "name": "Quần"
+    },
+    {
+      "id": 3,
+      "name": "Mũ"
+    }
+  ]
+}
